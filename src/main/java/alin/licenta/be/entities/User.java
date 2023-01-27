@@ -30,5 +30,5 @@ public class User {
     private String defaultBillingAddress;
 
     @OneToMany(mappedBy = "user")
-    private List<Cart> carts;
+    private List<Cart> cartList;
 }
