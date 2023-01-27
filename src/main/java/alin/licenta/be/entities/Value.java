@@ -18,5 +18,5 @@ public class Value {
     private String value;
 
     @OneToMany(mappedBy = "value")
-    private List<AttributeValue> AttributeValueList;
+    private List<AttributeValue> attributeValueList;
 }
