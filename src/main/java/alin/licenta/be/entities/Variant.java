@@ -27,4 +27,7 @@ public class Variant {
     @JoinColumn(name = "attribute_value_id")
     private AttributeValue attributeValue;
 
+    @OneToMany(mappedBy = "variant")
+    @JsonIgnore
+    private List<CartEntry> cartEntryList;
 }

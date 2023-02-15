@@ -21,4 +21,8 @@ public class CartEntry {
     @JoinColumn(name = "cart_id")
     @JsonIgnore
     private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "variant_id")
+    private Variant variant;
 }
