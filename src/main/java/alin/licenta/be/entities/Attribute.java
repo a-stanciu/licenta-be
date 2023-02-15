@@ -1,5 +1,6 @@
 package alin.licenta.be.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,6 @@ public class Attribute {
     private String name;
 
     @OneToMany(mappedBy = "attribute")
+    @JsonIgnore
     private List<AttributeValue> attributeValueList;
 }
