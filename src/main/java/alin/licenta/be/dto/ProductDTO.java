@@ -13,11 +13,13 @@ public class ProductDTO {
 
     private String name;
 
+    private String description;
+
     private Date addedDate;
 
     private String pictureUrl;
 
     private List<Variant> variantList;
 
-    private Subcategory subcategory;
+    private int subcategory;
 }

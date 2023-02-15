@@ -18,7 +18,7 @@ public class CartDTO {
 
     private String orderStatus;
 
-    private User user;
+    private int user;
 
     private List<CartEntry> cartEntryList;
 }

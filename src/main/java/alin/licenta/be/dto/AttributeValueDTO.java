@@ -10,9 +10,9 @@ public class AttributeValueDTO {
 
     private int id;
 
-    private Attribute attribute;
+    private int attribute;
 
-    private Value value;
+    private int value;
 
     private List<Variant> variantList;
 }

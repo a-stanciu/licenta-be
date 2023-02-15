@@ -12,7 +12,9 @@ public class VariantDTO {
 
     private int price;
 
-    private Product product;
+    private int product;
 
-    private List<AttributeValue> attributeValueList;
+    private int attributeValue;
+
+    private List<CartEntry> cartEntryList;
 }
