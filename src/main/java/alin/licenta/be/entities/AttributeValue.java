@@ -24,6 +24,7 @@ public class AttributeValue {
     @JoinColumn(name = "value_id")
     private Value value;
 
-    @ManyToMany(mappedBy = "attributeValueList")
+    @OneToMany(mappedBy = "attributeValue")
+    @JsonIgnore
     private List<Variant> variantList;
 }

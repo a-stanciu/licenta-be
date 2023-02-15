@@ -21,10 +21,8 @@ public class Variant {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "variant_attribute_value",
-            joinColumns = @JoinColumn(name = "variant_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "attribute_value_id", referencedColumnName = "id"))
-    private List<AttributeValue> attributeValueList;
+    @ManyToOne
+    @JoinColumn(name = "attribute_value_id")
+    private AttributeValue attributeValue;
 
 }
