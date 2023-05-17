@@ -1,10 +1,15 @@
 package alin.licenta.be.controllers;
 
 import alin.licenta.be.dto.UserDTO;
+import alin.licenta.be.entities.AuthenticationRequest;
+import alin.licenta.be.entities.AuthenticationResponse;
 import alin.licenta.be.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +20,25 @@ public class UserController {
 
     UserService userService;
 
+    private final AuthenticationManager authenticationManager;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AuthenticationManager authenticationManager) {
         this.userService = userService;
+        this.authenticationManager = authenticationManager;
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+            );
+        } catch (BadCredentialsException e) {
+            throw new Exception("Incorrect username or password", e);
+        }
+
+        return ResponseEntity.ok(new AuthenticationResponse(userService.authenticate(authenticationRequest)));
     }
 
     @PostMapping("/create")
