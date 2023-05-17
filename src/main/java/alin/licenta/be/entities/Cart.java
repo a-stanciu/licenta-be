@@ -1,9 +1,10 @@
 package alin.licenta.be.entities;
 
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,9 @@ public class Cart {
     private String billingAddress;
 
     private String orderStatus;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModified;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
