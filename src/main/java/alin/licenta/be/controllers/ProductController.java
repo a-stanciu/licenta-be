@@ -1,6 +1,6 @@
 package alin.licenta.be.controllers;
 
-import alin.licenta.be.dto.ProductDTO;
+import alin.licenta.be.dto.ProductResponseDTO;
 import alin.licenta.be.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody ProductDTO productEntryDTO) {
+    public ResponseEntity<Object> create(@RequestBody ProductResponseDTO productEntryDTO) {
         return new ResponseEntity<>(productService.create(productEntryDTO), HttpStatus.OK);
     }
 
@@ -31,12 +31,12 @@ public class ProductController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<ProductDTO>> findAll() {
+    public ResponseEntity<List<ProductResponseDTO>> findAll() {
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody ProductDTO productEntryDTO) {
+    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody ProductResponseDTO productEntryDTO) {
         return new ResponseEntity<>(productService.update(id, productEntryDTO), HttpStatus.OK);
     }
 

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class ProductDTO {
+public class ProductRequestDTO {
 
     private int id;
 
@@ -17,7 +17,7 @@ public class ProductDTO {
 
     private Date addedDate;
 
-    private String pictureUrl;
+    private String base64Picture;
 
     private List<Variant> variantList;
 

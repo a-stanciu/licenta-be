@@ -1,6 +1,6 @@
 package alin.licenta.be.services;
 
-import alin.licenta.be.dto.ProductDTO;
+import alin.licenta.be.dto.ProductResponseDTO;
 import alin.licenta.be.entities.Product;
 import alin.licenta.be.mappers.ProductMapper;
 import alin.licenta.be.repositories.ProductRepository;
@@ -22,13 +22,13 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
-    public Product create(ProductDTO productDTO) {
-        return productRepository.save(productMapper.dtoToEntity(productDTO));
+    public Product create(ProductResponseDTO productResponseDTO) {
+        return productRepository.save(productMapper.dtoToEntity(productResponseDTO));
     }
 
-    public Product update(int id, ProductDTO productDTO) {
-        productDTO.setId(id);
-        return productRepository.save(productMapper.dtoToEntity(productDTO));
+    public Product update(int id, ProductResponseDTO productResponseDTO) {
+        productResponseDTO.setId(id);
+        return productRepository.save(productMapper.dtoToEntity(productResponseDTO));
     }
 
     public void deleteById(int id) {
@@ -45,11 +45,11 @@ public class ProductService {
                 .orElse(null);
     }
 
-    public ProductDTO findDTOById(int id) {
+    public ProductResponseDTO findDTOById(int id) {
         return productMapper.entityToDto(findEntityById(id));
     }
 
-    public List<ProductDTO> findAll() {
+    public List<ProductResponseDTO> findAll() {
         return productRepository
                 .findAll()
                 .stream()
