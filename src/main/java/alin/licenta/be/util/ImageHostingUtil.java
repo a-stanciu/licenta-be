@@ -1,55 +1,42 @@
 package alin.licenta.be.util;
 
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.ParseException;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Map;
 
 @Component
 public class ImageHostingUtil {
-    private final String uri;
+    private Map config;
+
+    private Cloudinary cloudinary;
+
+    private final MessageSource messageSource;
 
     @Autowired
     public ImageHostingUtil(MessageSource messageSource) {
-        uri = "https://api.imgbb.com/1/upload?key=" + messageSource.getMessage("secret.imgbb.api.key", null, Locale.ENGLISH);
+        this.messageSource = messageSource;
+
+        config = new HashMap();
+        config.put("cloud_name", messageSource.getMessage("secret.cloudinary.cloud.name", null, Locale.ENGLISH));
+        config.put("api_key", messageSource.getMessage("secret.cloudinary.api.key", null, Locale.ENGLISH));
+        config.put("api_secret", messageSource.getMessage("secret.cloudinary.api.secret", null, Locale.ENGLISH));
+        cloudinary = new Cloudinary(config);
     }
 
-    public String hostImage(String base64image) throws IOException, ParseException {
-        CloseableHttpClient client = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost(uri);
-
-        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-        builder.addTextBody("image", base64image);
-
-        HttpEntity multipart = builder.build();
-        httpPost.setEntity(multipart);
-
-        CloseableHttpResponse response = client.execute(httpPost);
-        client.close();
-        String requestBody = EntityUtils.toString(response.getEntity(), "UTF-8");
-
-        Pattern pattern = Pattern.compile("\"display_url\":\"[^\"]*");
-        Matcher matcher = pattern.matcher(requestBody);
-
-        String displayUrl = "";
-
-        if (matcher.find()) {
-            displayUrl = matcher.group();
-            displayUrl = displayUrl.substring(15);
+    public String hostImage(String imageName, String base64Image) {
+        try {
+            cloudinary.uploader().upload(base64Image, ObjectUtils.asMap("public_id", imageName));
+        } catch (IOException exception) {
+            System.err.println(exception.getMessage());
         }
 
-        return displayUrl;
+        return cloudinary.url().generate(imageName + ".png");
     }
 }

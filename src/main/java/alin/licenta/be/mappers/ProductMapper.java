@@ -35,14 +35,7 @@ public abstract class ProductMapper {
 
     @AfterMapping
     public void fromBase64PictureToPictureUri(@MappingTarget Product product, ProductRequestDTO productRequestDTO) {
-        String pictureUri;
-
-        try {
-            pictureUri = imageHostingUtil.hostImage(productRequestDTO.getBase64Picture());
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            pictureUri = "";
-        }
+        String pictureUri = imageHostingUtil.hostImage(String.valueOf(productRequestDTO.hashCode()), productRequestDTO.getBase64Picture());
 
         product.setPictureUrl(pictureUri);
     }
