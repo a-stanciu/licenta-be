@@ -1,6 +1,7 @@
 package alin.licenta.be.dto;
 
-import alin.licenta.be.entities.AttributeValue;
+import alin.licenta.be.entities.AssignedValue;
+import alin.licenta.be.entities.Value;
 import lombok.Data;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public class AttributeDTO {
 
     private String name;
 
-    private List<AttributeValue> attributeValueList;
+    private List<AssignedValue> assignedValueList;
+
+    private List<Value> valueList;
 }

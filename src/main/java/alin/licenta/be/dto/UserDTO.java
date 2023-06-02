@@ -20,6 +20,8 @@ public class UserDTO {
 
     private String password;
 
+    private boolean isAdmin;
+
     private String defaultDeliveryAddress;
 
     private String defaultBillingAddress;

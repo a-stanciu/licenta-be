@@ -1,10 +1,10 @@
 package alin.licenta.be.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,18 +16,20 @@ public class Variant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int price;
-
     @ManyToOne
     @JoinColumn(name = "product_id")
     @JsonIgnore
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "attribute_value_id")
-    private AttributeValue attributeValue;
+    private int quantity;
 
     @OneToMany(mappedBy = "variant")
     @JsonIgnore
     private List<CartEntry> cartEntryList;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "variant_attribute",
+            joinColumns = @JoinColumn(name = "assigned_value_id"),
+            inverseJoinColumns = @JoinColumn(name = "variant_id"))
+    private List<AssignedValue> assignedValueList;
 }

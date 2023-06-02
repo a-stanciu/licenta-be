@@ -1,10 +1,9 @@
 package alin.licenta.be.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,6 +19,9 @@ public class Value {
     private String value;
 
     @OneToMany(mappedBy = "value")
-    @JsonIgnore
-    private List<AttributeValue> attributeValueList;
+    private List<AssignedValue> assignedValueList;
+
+    @ManyToOne
+    @JoinColumn(name = "attribute_id")
+    private Attribute attribute;
 }

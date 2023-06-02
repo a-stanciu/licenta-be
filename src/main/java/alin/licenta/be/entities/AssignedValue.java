@@ -1,31 +1,28 @@
 package alin.licenta.be.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "attribute_value")
-public class AttributeValue {
+public class AssignedValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "assignedValueList")
+    private List<Variant> variantList;
+
+    @ManyToOne
     @JoinColumn(name = "attribute_id")
     private Attribute attribute;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "value_id")
     private Value value;
-
-    @OneToMany(mappedBy = "attributeValue")
-    @JsonIgnore
-    private List<Variant> variantList;
 }

@@ -1,10 +1,10 @@
 package alin.licenta.be.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +18,8 @@ public class Product {
     private int id;
 
     private String name;
+
+    private int price;
 
     private String description;
 

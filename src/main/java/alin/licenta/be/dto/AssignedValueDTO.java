@@ -1,19 +1,20 @@
 package alin.licenta.be.dto;
 
-import alin.licenta.be.entities.AssignedValue;
 import alin.licenta.be.entities.Attribute;
+import alin.licenta.be.entities.Value;
+import alin.licenta.be.entities.Variant;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class ValueDTO {
+public class AssignedValueDTO {
 
     private int id;
 
-    private String value;
-
-    private List<AssignedValue> assignedValueList;
+    private List<Variant> variantList;
 
     private Attribute attribute;
+
+    private Value value;
 }

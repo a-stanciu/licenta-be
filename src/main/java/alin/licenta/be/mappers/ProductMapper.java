@@ -23,7 +23,7 @@ public abstract class ProductMapper {
 
     public abstract ProductResponseDTO entityToDto(Product product);
 
-    public abstract Product dtoToEntity(ProductResponseDTO productResponseDTO);
+    public abstract Product dtoToEntity(ProductRequestDTO productRequestDTO);
 
     protected int fromSubcategoryToInteger(Subcategory value) {
         return value.getId();

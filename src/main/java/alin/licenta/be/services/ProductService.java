@@ -1,5 +1,6 @@
 package alin.licenta.be.services;
 
+import alin.licenta.be.dto.ProductRequestDTO;
 import alin.licenta.be.dto.ProductResponseDTO;
 import alin.licenta.be.entities.Product;
 import alin.licenta.be.mappers.ProductMapper;
@@ -22,13 +23,13 @@ public class ProductService {
         this.productMapper = productMapper;
     }
 
-    public Product create(ProductResponseDTO productResponseDTO) {
-        return productRepository.save(productMapper.dtoToEntity(productResponseDTO));
+    public Product create(ProductRequestDTO productDTO) {
+        return productRepository.save(productMapper.dtoToEntity(productDTO));
     }
 
-    public Product update(int id, ProductResponseDTO productResponseDTO) {
-        productResponseDTO.setId(id);
-        return productRepository.save(productMapper.dtoToEntity(productResponseDTO));
+    public Product update(int id, ProductRequestDTO productDTO) {
+        productDTO.setId(id);
+        return productRepository.save(productMapper.dtoToEntity(productDTO));
     }
 
     public void deleteById(int id) {

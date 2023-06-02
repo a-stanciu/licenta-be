@@ -36,7 +36,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/user/authenticate", "/user/register", "/user/deleteAll").permitAll()
+                .authorizeRequests().antMatchers("/user/authenticate", "/user/create", "/user/deleteAll").permitAll()
                 .antMatchers(HttpMethod.GET).permitAll()
                 .antMatchers(HttpMethod.DELETE).permitAll()
                 .anyRequest().authenticated()

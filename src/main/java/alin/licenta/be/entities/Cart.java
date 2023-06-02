@@ -22,7 +22,8 @@ public class Cart {
 
     private String billingAddress;
 
-    private String orderStatus;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModified;
