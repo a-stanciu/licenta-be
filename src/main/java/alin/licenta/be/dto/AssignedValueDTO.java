@@ -1,7 +1,5 @@
 package alin.licenta.be.dto;
 
-import alin.licenta.be.entities.Attribute;
-import alin.licenta.be.entities.Value;
 import alin.licenta.be.entities.Variant;
 import lombok.Data;
 
@@ -14,7 +12,7 @@ public class AssignedValueDTO {
 
     private List<Variant> variantList;
 
-    private Attribute attribute;
+    private int attribute;
 
-    private Value value;
+    private int value;
 }

@@ -1,5 +1,6 @@
 package alin.licenta.be.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ public class AssignedValue {
     private int id;
 
     @ManyToMany(mappedBy = "assignedValueList")
+    @JsonIgnore
     private List<Variant> variantList;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package alin.licenta.be.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,9 +20,11 @@ public class Value {
     private String value;
 
     @OneToMany(mappedBy = "value")
+    @JsonIgnore
     private List<AssignedValue> assignedValueList;
 
     @ManyToOne
     @JoinColumn(name = "attribute_id")
+    @JsonIgnore
     private Attribute attribute;
 }

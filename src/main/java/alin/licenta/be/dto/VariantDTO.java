@@ -1,6 +1,5 @@
 package alin.licenta.be.dto;
 
-import alin.licenta.be.entities.AssignedValue;
 import alin.licenta.be.entities.CartEntry;
 import lombok.Data;
 
@@ -17,5 +16,5 @@ public class VariantDTO {
 
     private List<CartEntry> cartEntryList;
 
-    private List<AssignedValue> assignedValueList;
+    private List<Integer> assignedValueList;
 }

@@ -29,7 +29,7 @@ public class Variant {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "variant_attribute",
-            joinColumns = @JoinColumn(name = "assigned_value_id"),
-            inverseJoinColumns = @JoinColumn(name = "variant_id"))
+            joinColumns = @JoinColumn(name = "variant_id"),
+            inverseJoinColumns = @JoinColumn(name = "assigned_value_id"))
     private List<AssignedValue> assignedValueList;
 }
