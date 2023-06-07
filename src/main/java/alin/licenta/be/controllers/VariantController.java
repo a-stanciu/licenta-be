@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/variant")
 public class VariantController {
 
-    VariantService variantService;
+    final VariantService variantService;
 
     @Autowired
     public VariantController(VariantService variantService) {

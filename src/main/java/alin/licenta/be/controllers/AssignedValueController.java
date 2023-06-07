@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/assignedValue")
 public class AssignedValueController {
 
-    AssignedValueService assignedValueService;
+    final AssignedValueService assignedValueService;
 
     @Autowired
     public AssignedValueController(AssignedValueService assignedValueService) {

@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/subcategory")
 public class SubcategoryController {
 
-    SubcategoryService subcategoryService;
+    final SubcategoryService subcategoryService;
 
     @Autowired
     public SubcategoryController(SubcategoryService subcategoryService) {

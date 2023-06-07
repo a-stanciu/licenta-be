@@ -13,17 +13,12 @@ import java.util.Map;
 
 @Component
 public class ImageHostingUtil {
-    private Map config;
 
-    private Cloudinary cloudinary;
-
-    private final MessageSource messageSource;
+    private final Cloudinary cloudinary;
 
     @Autowired
     public ImageHostingUtil(MessageSource messageSource) {
-        this.messageSource = messageSource;
-
-        config = new HashMap();
+        Map<String, String> config = new HashMap<>();
         config.put("cloud_name", messageSource.getMessage("secret.cloudinary.cloud.name", null, Locale.ENGLISH));
         config.put("api_key", messageSource.getMessage("secret.cloudinary.api.key", null, Locale.ENGLISH));
         config.put("api_secret", messageSource.getMessage("secret.cloudinary.api.secret", null, Locale.ENGLISH));

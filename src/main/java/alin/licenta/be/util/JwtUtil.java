@@ -22,13 +22,10 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private final MessageSource messageSource;
-
     private final String secretKey;
 
     @Autowired
     public JwtUtil(MessageSource messageSource) {
-        this.messageSource = messageSource;
         secretKey = messageSource.getMessage("secret.token.key", null, Locale.ENGLISH);
     }
 
@@ -79,6 +76,7 @@ public class JwtUtil {
             e.printStackTrace();
         }
 
+        assert encodedHash != null;
         return Keys.hmacShaKeyFor(encodedHash);
     }
 

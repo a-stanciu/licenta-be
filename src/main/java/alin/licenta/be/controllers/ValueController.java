@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/value")
 public class ValueController {
 
-    ValueService valueService;
+    final ValueService valueService;
 
     @Autowired
     public ValueController(ValueService valueService) {

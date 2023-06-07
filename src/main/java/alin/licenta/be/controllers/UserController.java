@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    UserService userService;
+    final UserService userService;
 
     private final AuthenticationManager authenticationManager;
 

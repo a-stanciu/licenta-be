@@ -36,11 +36,6 @@ public class User implements UserDetails {
 
     private String defaultBillingAddress;
 
-    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.email = username;
-        this.password = password;
-    }
-
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Cart> cartList;

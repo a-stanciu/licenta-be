@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "assigned_value")
 public class AssignedValue {
 
     @Id
