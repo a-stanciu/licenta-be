@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/value")
+@CrossOrigin
 public class ValueController {
 
     final ValueService valueService;

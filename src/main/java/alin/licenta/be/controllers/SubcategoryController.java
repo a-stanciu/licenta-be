@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subcategory")
+@CrossOrigin
 public class SubcategoryController {
 
     final SubcategoryService subcategoryService;
