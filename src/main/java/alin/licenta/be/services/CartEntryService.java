@@ -14,7 +14,7 @@ public class CartEntryService {
 
     private final CartEntryRepository cartEntryRepository;
 
-    public final CartEntryMapper cartEntryMapper;
+    private final CartEntryMapper cartEntryMapper;
 
     @Autowired
     public CartEntryService(CartEntryRepository cartEntryRepository, CartEntryMapper cartEntryMapper) {
@@ -23,12 +23,12 @@ public class CartEntryService {
     }
 
     public CartEntry create(CartEntryDTO cartEntryDTO) {
-        return cartEntryRepository.save(cartEntryMapper.dtoToEntry(cartEntryDTO));
+        return cartEntryRepository.save(cartEntryMapper.dtoToEntity(cartEntryDTO));
     }
 
     public CartEntry update(int id, CartEntryDTO cartEntryDTO) {
         cartEntryDTO.setId(id);
-        return cartEntryRepository.save(cartEntryMapper.dtoToEntry(cartEntryDTO));
+        return cartEntryRepository.save(cartEntryMapper.dtoToEntity(cartEntryDTO));
     }
 
     public void deleteById(int id) {
@@ -40,9 +40,9 @@ public class CartEntryService {
     }
 
     public CartEntry findEntityById(int id) {
-    return cartEntryRepository
-            .findById(id)
-            .orElse(null);
+        return cartEntryRepository
+                .findById(id)
+                .orElse(null);
     }
 
     public CartEntryDTO findDTOById(int id) {

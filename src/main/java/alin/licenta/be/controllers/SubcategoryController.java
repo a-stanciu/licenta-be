@@ -1,6 +1,7 @@
 package alin.licenta.be.controllers;
 
-import alin.licenta.be.dto.SubcategoryDTO;
+import alin.licenta.be.dto.SubcategoryRequestDTO;
+import alin.licenta.be.dto.SubcategoryResponseDTO;
 import alin.licenta.be.services.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class SubcategoryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Object> create(@RequestBody SubcategoryDTO subcategoryEntryDTO) {
+    public ResponseEntity<Object> create(@RequestBody SubcategoryRequestDTO subcategoryEntryDTO) {
         return new ResponseEntity<>(subcategoryService.create(subcategoryEntryDTO), HttpStatus.OK);
     }
 
@@ -32,12 +33,12 @@ public class SubcategoryController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<SubcategoryDTO>> findAll() {
+    public ResponseEntity<List<SubcategoryResponseDTO>> findAll() {
         return new ResponseEntity<>(subcategoryService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody SubcategoryDTO subcategoryEntryDTO) {
+    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody SubcategoryRequestDTO subcategoryEntryDTO) {
         return new ResponseEntity<>(subcategoryService.update(id, subcategoryEntryDTO), HttpStatus.OK);
     }
 

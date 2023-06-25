@@ -14,28 +14,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class CartEntryMapper {
 
     @Autowired
-    CartService cartService;
+    private CartService cartService;
 
     @Autowired
-    VariantService variantService;
+    private VariantService variantService;
 
     public abstract CartEntryDTO entityToDto(CartEntry cartEntry);
 
-    public abstract CartEntry dtoToEntry(CartEntryDTO cartEntryDTO);
+    public abstract CartEntry dtoToEntity(CartEntryDTO cartEntryDTO);
 
-    public int fromCartToInteger(Cart value) {
+    protected int fromCartToInteger(Cart value) {
         return value.getId();
     }
 
-    public Cart fromIntegerToCart(int value) {
+    protected Cart fromIntegerToCart(int value) {
         return cartService.findEntityById(value);
     }
 
-    public int fromVariantToInteger(Variant value) {
+    protected int fromVariantToInteger(Variant value) {
         return value.getId();
     }
 
-    public Variant fromIntegerToVariant(int value) {
+    protected Variant fromIntegerToVariant(int value) {
         return variantService.findEntityById(value);
     }
 }

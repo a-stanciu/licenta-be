@@ -7,8 +7,6 @@ public class CartEntryDTO {
 
     private int id;
 
-    private int quantity;
-
     private int cart;
 
     private int variant;

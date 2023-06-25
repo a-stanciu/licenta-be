@@ -27,6 +27,8 @@ public class Product {
 
     private String pictureUrl;
 
+    private String transparentPictureUrl;
+
     @OneToMany(mappedBy = "product")
     private List<Variant> variantList;
 

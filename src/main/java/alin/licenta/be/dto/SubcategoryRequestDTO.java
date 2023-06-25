@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class SubcategoryDTO {
+public class SubcategoryRequestDTO {
 
     private int id;
 

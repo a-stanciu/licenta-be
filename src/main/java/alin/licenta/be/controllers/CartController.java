@@ -2,11 +2,13 @@ package alin.licenta.be.controllers;
 
 import alin.licenta.be.dto.CartDTO;
 import alin.licenta.be.services.CartService;
+import alin.licenta.be.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -16,14 +18,22 @@ public class CartController {
 
     final CartService cartService;
 
+    final UserService userService;
+
     @Autowired
-    public CartController(CartService cartService) {
+    public CartController(CartService cartService, UserService userService) {
         this.cartService = cartService;
+        this.userService = userService;
     }
 
     @PostMapping("/create")
     public ResponseEntity<Object> create(@RequestBody CartDTO cartDTO) {
         return new ResponseEntity<>(cartService.create(cartDTO), HttpStatus.OK);
+    }
+
+    @PostMapping("/placeOrder")
+    public ResponseEntity<Object> placeOrder(@RequestBody CartDTO cartDTO) {
+        return new ResponseEntity<>(cartService.placeOrder(cartDTO), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
@@ -42,8 +52,13 @@ public class CartController {
     }
 
     @GetMapping("/getCurrentByUser/{id}")
-    public ResponseEntity<Object> findCurrent(@PathVariable Integer id) {
+    public ResponseEntity<Object> findCurrentByUser(@PathVariable Integer id) {
         return new ResponseEntity<>(cartService.findCurrentByUser(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCurrent")
+    public ResponseEntity<Object> findCurrent(Principal principal) {
+        return new ResponseEntity<>(cartService.findCurrentByUser(userService.loadUserByUsername(principal.getName()).getId()), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")

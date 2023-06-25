@@ -21,6 +21,8 @@ public class ProductRequestDTO {
 
     private String base64Picture;
 
+    private String base64TransparentPicture;
+
     private List<Variant> variantList;
 
     private int subcategory;

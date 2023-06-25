@@ -21,7 +21,9 @@ public class ProductResponseDTO {
 
     private String pictureUrl;
 
+    private String transparentPictureUrl;
+
     private List<Variant> variantList;
 
-    private int subcategory;
+    private SubcategoryResponseDTO subcategory;
 }

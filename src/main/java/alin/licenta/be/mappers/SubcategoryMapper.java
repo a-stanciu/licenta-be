@@ -1,6 +1,7 @@
 package alin.licenta.be.mappers;
 
-import alin.licenta.be.dto.SubcategoryDTO;
+import alin.licenta.be.dto.SubcategoryRequestDTO;
+import alin.licenta.be.dto.SubcategoryResponseDTO;
 import alin.licenta.be.entities.Category;
 import alin.licenta.be.entities.Subcategory;
 import alin.licenta.be.services.CategoryService;
@@ -14,9 +15,9 @@ public abstract class SubcategoryMapper {
     @Autowired
     protected CategoryService categoryService;
 
-    public abstract SubcategoryDTO entityToDto(Subcategory subcategory);
+    public abstract SubcategoryResponseDTO entityToDto(Subcategory subcategory);
 
-    public abstract Subcategory dtoToEntity(SubcategoryDTO subcategoryDTO);
+    public abstract Subcategory dtoToEntity(SubcategoryRequestDTO subcategoryRequestDTO);
 
     protected int fromCategoryToInteger(Category value) {
         return value.getId();

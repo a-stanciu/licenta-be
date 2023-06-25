@@ -5,6 +5,7 @@ import alin.licenta.be.entities.AssignedValue;
 import alin.licenta.be.entities.Product;
 import alin.licenta.be.entities.Variant;
 import alin.licenta.be.services.AssignedValueService;
+import alin.licenta.be.services.CartService;
 import alin.licenta.be.services.ProductService;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -20,6 +21,9 @@ public abstract class VariantMapper {
 
     @Autowired
     protected AssignedValueService assignedValueService;
+
+    @Autowired
+    protected CartService cartService;
 
     public abstract VariantDTO entityToDto(Variant variant);
 

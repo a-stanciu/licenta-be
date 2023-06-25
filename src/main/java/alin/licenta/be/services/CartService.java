@@ -4,6 +4,7 @@ import alin.licenta.be.dto.CartDTO;
 import alin.licenta.be.entities.Cart;
 import alin.licenta.be.mappers.CartMapper;
 import alin.licenta.be.repositories.CartRepository;
+import alin.licenta.be.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +20,24 @@ public class CartService {
 
     private final UserService userService;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public CartService(CartRepository cartRepository, CartMapper cartMapper, UserService userService) {
+    public CartService(CartRepository cartRepository, CartMapper cartMapper, UserService userService, UserRepository userRepository) {
         this.cartRepository = cartRepository;
         this.cartMapper = cartMapper;
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     public Cart create(CartDTO cartDTO) {
         cartDTO.setLastModified(new Date());
         return cartRepository.save(cartMapper.dtoToEntity(cartDTO));
+    }
+
+    public Cart placeOrder(CartDTO cartDTO) {
+        // not implemented
+        return new Cart();
     }
 
     public Cart update(int id, CartDTO cartDTO) {

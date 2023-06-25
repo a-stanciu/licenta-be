@@ -12,6 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -55,6 +56,12 @@ public class UserController {
     @GetMapping("/getAll")
     public ResponseEntity<List<UserDTO>> findAll() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/findCurrent")
+    @ResponseBody
+    public ResponseEntity<UserDTO> findCurrent(Principal principal) {
+        return new ResponseEntity<>(userService.loadUserDTOByUsername(principal.getName()), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")

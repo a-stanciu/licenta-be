@@ -1,6 +1,7 @@
 package alin.licenta.be.services;
 
-import alin.licenta.be.dto.SubcategoryDTO;
+import alin.licenta.be.dto.SubcategoryRequestDTO;
+import alin.licenta.be.dto.SubcategoryResponseDTO;
 import alin.licenta.be.entities.Subcategory;
 import alin.licenta.be.mappers.SubcategoryMapper;
 import alin.licenta.be.repositories.SubcategoryRepository;
@@ -22,13 +23,13 @@ public class SubcategoryService {
         this.subcategoryMapper = subcategoryMapper;
     }
 
-    public Subcategory create(SubcategoryDTO subcategoryDTO) {
-        return subcategoryRepository.save(subcategoryMapper.dtoToEntity(subcategoryDTO));
+    public Subcategory create(SubcategoryRequestDTO subcategoryRequestDTO) {
+        return subcategoryRepository.save(subcategoryMapper.dtoToEntity(subcategoryRequestDTO));
     }
 
-    public Subcategory update(int id, SubcategoryDTO subcategoryDTO) {
-        subcategoryDTO.setId(id);
-        return subcategoryRepository.save(subcategoryMapper.dtoToEntity(subcategoryDTO));
+    public Subcategory update(int id, SubcategoryRequestDTO subcategoryRequestDTO) {
+        subcategoryRequestDTO.setId(id);
+        return subcategoryRepository.save(subcategoryMapper.dtoToEntity(subcategoryRequestDTO));
     }
 
     public void deleteById(int id) {
@@ -45,11 +46,11 @@ public class SubcategoryService {
                 .orElse(null);
     }
 
-    public SubcategoryDTO findDTOById(int id) {
+    public SubcategoryResponseDTO findDTOById(int id) {
         return subcategoryMapper.entityToDto(findEntityById(id));
     }
 
-    public List<SubcategoryDTO> findAll() {
+    public List<SubcategoryResponseDTO> findAll() {
         return subcategoryRepository
                 .findAll()
                 .stream()
